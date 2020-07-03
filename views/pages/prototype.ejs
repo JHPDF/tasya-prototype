@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Can You Hear Me? </title>
+  <link rel="stylesheet" type="text/css" href="prototype.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+<script src="https://unpkg.com/tone"></script>
+<script src="https://unpkg.com/@tonejs/ui"></script>
+<script src="https://unpkg.com/tone@13.8.25/build/Tone.js"> </script>
+<script src="p5.js" > </script>
+<script src="p5.sound.js"> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+     <div class = "fading">
+     <p> Time passes faster in the mountains than it does at sea level. Does that mean we live faster in the mountains? How do you measure faster? By the amount of heartbeats per minute? Does that mean people in love live faster? Can they feel each beat? Time is always and never. The current “us” are all the future “we” and all the past “we” - shaped by space and time, manifesting themselves right now. There are so many possible futures and they are all happening right now. Time is a measure of change and change can’t be measured by clocks but instead we can measure it by heart. Distance falls apart hand in hand with time. All that matters is that i can still hear you and you can still hear me and we just have to figure out how to co-exist. My silence might be a much needed space for someone else. Focus. Listen. Make space. Maybe after all those moments together we learn how to make both our hearts beat faster. Can you hear me?  </p> </div>
+    
+    <div class = "instructionWndw">  <p class = "txt"> Space and Time shape us. <br> Listen & pay attention. Careful w/ volume. <br> Click around. Double Click to stop. <br> We need to learn to co-exist & listen. <br> Can You hear me? </p>  </div>
+    <div class = "container"> </div>
+  <ul>
+    <li class = "You"><label for="local-volume"> You </label></li>
+    <li class = "Them"> <label for="remote-volume"> Them </label></li>
+  </ul>
+  <input id="local-volume" type="range" id="volume-bar" min="-30" max="30" step="1" value=“0”>
+  <input id="remote-volume" type="range" id="volume-bar" min="-30" max="30" step="1" value="1">  
+  <div class = "pressme">
+    <div id = "arpeggio" class="noteOne" name="E4"></div>  
+    <div id = "monoEff" class="noteTwo" name="C5"></div>
+    <div id = "rhythm" class="noteThree" name="C5"></div>
+</div>
+</body>
+<script type="text/javascript" src="prototype.js"> </script>
+</html>

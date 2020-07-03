@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tasya</title>
+  <style type="text/css">
+    .note {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+    }
+    .note:nth-child(1){
+      background: red;
+    }
+    .note:nth-child(2){
+      background: yellow;
+    }
+    .note:nth-child(3){
+      background: green;
+    }
+    .note:nth-child(4){
+      background: blue;
+    }
+    tone-demo {
+      display: block;
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+<script src="https://unpkg.com/tone"></script>
+<script src="https://unpkg.com/@tonejs/ui"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+  <div id="notes">
+    <div class="note" name="C4"></div>
+    <div class="note" name="E4"></div>
+    <div class="note" name="G4"></div>
+    <div class="note" name="C5"></div>
+  </div>
+  <tone-demo autoplay></tone-demo>
+  <script type="text/javascript">
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    var notes = ['C2','E2','G2','C3','E3','G3','C4','E4','G4','C5','E5','G5','C2','E2','G2','C3','E3','G3','C4','E4','G4','C5','E5','G5'];
+    var note = notes[h];
+    const synth = new Tone.AMSynth().toMaster()
+    function init(){
+      $('.note').mousedown( function() {
+        //note = this.getAttribute('name')
+          synth.triggerAttack( note ) 
+          msg = {'note' : note }
+          ws.send( JSON.stringify( msg ) )
+        });
+      $('.note').mouseup (function() {
+          synth.triggerRelease() 
+        })
+    };
+    document.onload = init();
+    window.onload = function() {
+        received = 'st';
+        receivedNote = 0;
+        ws = new WebSocket('wss://whispering-temple-39200.herokuapp.com/');
+        ws.onmessage = function(msg){
+           // console.log( JSON.parse(msg.data)  );
+          received = JSON.parse(msg.data)
+          if (received['note']) {
+            console.log(received['note'])
+            synth.triggerAttackRelease( received['note'], '4n' )
+          }
+          
+        };
+    }
+    
+  </script>
+</body>
+</html>
