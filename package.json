@@ -16,7 +16,7 @@
     "express": "^4.15.2",
     "nodejs-websocket": "^1.7.2",
     "pg": "^7.18.2",
-    "three": "^0.115.0",
+    "three": "^0.137.0",
     "ws": "^7.2.3"
   },
   "devDependencies": {
